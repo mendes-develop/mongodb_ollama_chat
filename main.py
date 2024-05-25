@@ -54,15 +54,15 @@ def read_root():
         found_business = Business(**business)
         response.append(found_business.__str__())
         
-        embedding = ollama.embeddings(
-        model='llama3',
-        prompt=found_business.__str__(), )
+        # embedding = ollama.embeddings(
+        # model='llama3',
+        # prompt=found_business.__str__(), )
         
-        print(embedding['embedding'])
+        # print(embedding['embedding'])
        
-        Business_Connection.find_one_and_update(
-        {"_id": bson.ObjectId(business["_id"])},
-        {"$set": {"embeding": embedding['embedding']}},)
+        # Business_Connection.find_one_and_update(
+        # {"_id": bson.ObjectId(business["_id"])},
+        # {"$set": {"embeding": embedding['embedding']}},)
     
     
     return {"response": response}
