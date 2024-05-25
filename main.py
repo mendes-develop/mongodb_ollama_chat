@@ -31,20 +31,6 @@ def read_root():
     # names = db.list_collection_names()    
     businesses = Business_Connection.find({})
     
-    # print(business)
-    
-    # business.name = "Ollama - Point da Jo"
-    # business.save()
-    
-    # print(business["name"])
-    
-    # found_business = Business(**business)
-    
-    # print(found_business.__str__())
-    
-    # business["name"] = "Ollama - Point da Jo"
-    # business.save()
-    # print(business["name"])
     response = []
     for business in businesses:
         if 'name' in business:
@@ -54,6 +40,7 @@ def read_root():
         found_business = Business(**business)
         response.append(found_business.__str__())
         
+        # Create embeddings with ollama3
         # embedding = ollama.embeddings(
         # model='llama3',
         # prompt=found_business.__str__(), )
@@ -137,10 +124,6 @@ def read_item(item_id: int, q: Union[str, None] = None):
         # stop=["\n"]
     )
     
-    # response = ollama.chat(model='llama3', messages=[{
-    #     'role': 'user',
-    #     'content': 'Why is the sky blue?',
-    # }])
     print(response['message']['content'])
     
     return {"pergunta": q, "business_found": response['message']['content']}
